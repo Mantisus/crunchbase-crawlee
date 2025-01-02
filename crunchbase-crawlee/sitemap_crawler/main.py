@@ -1,5 +1,5 @@
-from crawlee.parsel_crawler import ParselCrawler
-from crawlee.http_clients.curl_impersonate import CurlImpersonateHttpClient
+from crawlee.crawlers import ParselCrawler
+from crawlee.http_clients import CurlImpersonateHttpClient
 from crawlee import ConcurrencySettings, HttpHeaders
 
 from .routes import router

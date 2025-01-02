@@ -1,6 +1,6 @@
 import json
 
-from crawlee.http_crawler import HttpCrawlingContext
+from crawlee.crawlers import HttpCrawlingContext
 from crawlee.router import Router
 from crawlee import Request, HttpHeaders
 
@@ -10,7 +10,7 @@ router = Router[HttpCrawlingContext]()
 @router.default_handler
 async def default_handler(context: HttpCrawlingContext) -> None:
     """Default request handler."""
-    context.log.info(f'default_handler processing {context.request} ...')
+    context.log.info(f'default_handler processing {context.request.url} ...')
 
     data = json.loads(context.http_response.read())
 
@@ -26,7 +26,7 @@ async def default_handler(context: HttpCrawlingContext) -> None:
 @router.handler('company')
 async def company_handler(context: HttpCrawlingContext) -> None:
     """Company request handler."""
-    context.log.info(f'company_handler processing {context.request} ...')
+    context.log.info(f'company_handler processing {context.request.url} ...')
 
     data = json.loads(context.http_response.read())
 

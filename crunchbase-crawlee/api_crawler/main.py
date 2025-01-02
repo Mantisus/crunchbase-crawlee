@@ -1,7 +1,7 @@
 import os
 import json
 
-from crawlee.http_crawler import HttpCrawler
+from crawlee.crawlers import HttpCrawler
 from crawlee.http_clients import HttpxHttpClient
 from crawlee import ConcurrencySettings, HttpHeaders, Request
 
@@ -42,11 +42,11 @@ async def main() -> None:
                                  'type': 'predicate',
                                  'values': ['company']}]}
 
-        payload = json.dumps(payload)
+        serialiazed_payload = json.dumps(payload)
         await crawler.run([Request.from_url(
             url="https://api.crunchbase.com/api/v4/searches/organizations",
             method="POST",
-            payload=payload,
+            payload=serialiazed_payload,
             use_extended_unique_key=True,
             headers=HttpHeaders({'Content-Type': 'application/json'}),
             label="search"
