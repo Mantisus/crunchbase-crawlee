@@ -11,7 +11,7 @@ router = Router[ParselCrawlingContext]()
 @router.default_handler
 async def default_handler(context: ParselCrawlingContext) -> None:
     """Default request handler."""
-    context.log.info(f'default_handler processing {context.request} ...')
+    context.log.info(f'default_handler processing {context.request.url} ...')
 
     requests = (Request.from_url(url=url, label='sitemap') for url in context.selector.xpath('//loc[contains(., "sitemap-organizations-8")]/text()').getall())
 
@@ -20,7 +20,7 @@ async def default_handler(context: ParselCrawlingContext) -> None:
 @router.handler('sitemap')
 async def sitemap_handler(context: ParselCrawlingContext) -> None:
     """Sitemap gzip request handler."""
-    context.log.info(f'sitemap_handler processing {context.request} ...')
+    context.log.info(f'sitemap_handler processing {context.request.url} ...')
 
     data = context.http_response.read()
     data = decompress(data)
