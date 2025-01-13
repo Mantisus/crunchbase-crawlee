@@ -34,7 +34,7 @@ async def sitemap_handler(context: ParselCrawlingContext) -> None:
 @router.handler('company')
 async def company_handler(context: ParselCrawlingContext) -> None:
     """Company request handler."""
-    context.log.info(f'company_handler processing {context.request} ...')
+    context.log.info(f'company_handler processing {context.request.url} ...')
 
     json_selector = context.selector.xpath('//*[@id="ng-state"]/text()')
 

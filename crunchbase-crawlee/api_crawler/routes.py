@@ -40,7 +40,7 @@ async def company_handler(context: HttpCrawlingContext) -> None:
 @router.handler('search')
 async def search_handler(context: HttpCrawlingContext) -> None:
     """Company request handler."""
-    context.log.info(f'company_handler processing {context.request} ...')
+    context.log.info(f'company_handler processing {context.request.url} ...')
 
     data = json.loads(context.http_response.read())
 
